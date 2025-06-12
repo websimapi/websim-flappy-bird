@@ -237,7 +237,7 @@
 
     function checkCollisions() {
         // Ground and ceiling collision
-        if (bird.y + bird.height > canvas.height - assets.ground.height || bird.y < 0) {
+        if (bird.y + bird.height > ground.y || bird.y < 0) {
             return true;
         }
 
@@ -402,6 +402,7 @@
         switch(gameState) {
             case 'start':
                 gameState = 'playing';
+                frames = 0; // Reset frames when starting to play
                 bird.flap();
                 break;
             case 'playing':
