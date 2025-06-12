@@ -180,8 +180,10 @@
     const pipeHeight = 320;
 
     function createPipe() {
-        // The top of the gap can be from 100 to canvas.height - 100 - PIPE_GAP
-        const gapTopY = 100 + Math.random() * (canvas.height - 200 - PIPE_GAP);
+        // The gap's top can be from 100px (top margin) down to a certain limit.
+        // We leave space for the ground (80px) and the pipe gap (120px).
+        const availableSpace = canvas.height - 100 - 80 - PIPE_GAP;
+        const gapTopY = 100 + Math.random() * availableSpace;
         pipes.push({
             x: canvas.width,
             y: gapTopY, // This is the y-coordinate of the bottom of the top pipe
@@ -261,7 +263,7 @@
     
     const ground = {
         x: 0,
-        y: canvas.height - 112, // ground image height
+        y: canvas.height - 80, // We only show 80px of the ground to lower the kill-zone. The image is 112px tall.
         width: 336, // ground image width
         height: 112,
         
